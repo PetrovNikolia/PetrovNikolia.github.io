@@ -1,0 +1,556 @@
+<!-- DOCTYPE html обозначает что на странице используется html5 стандарт, сейчас такой стандарт используется на подавляющем количестве сайтов -->
+<!DOCTYPE html>
+
+<!-- Начало страницы (атрибут lang не обязательный) -->
+<html lang="en">
+<!-- head слюжебный тэг не виден на странице используется для размежения информации о сайте и других нужд )) -->
+<head>
+	<!-- Данная конструкция используется для объявлени кодировки страниццы. Сейчас utf-8 самая распространенная -->
+	<meta charset="UTF-8">
+	<!-- title - это название страницы. Является обязательным к заполнению тэгом -->
+	<title>Document</title>
+	
+	<!-- Включени адптивности под моб устройства, стандартная строка если делаете адаптивную верстку. Если вам нужна фиксированная верстка, просто удалите или закомментируйте эту строка' -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Подключение стилевого файла в котором хранится вся информация о внешнем виде страницы -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+</head>
+<!-- Начало видимой части страницы -->
+<body>
+	<!-- Шапка страницы -->
+	<header id="header" class="header">
+		<!-- Специальный класс(название произвольное) для того чтобы ограничить ширину контента страницы и выровнять по центру окна браузера -->
+		<div class="container_center">
+			
+			<!-- Элемент шапки расположенный в левой части -->
+			<div class="header__left">
+				<ul class="nav">
+					<!-- Пример сокращенного создания элементов с помощью сниппетов Emmet -->
+					<!-- li.nav__item*4>a.nav__link -->
+					<!-- Элемент меню -->
+					<li class="nav__item">
+						<!-- Ссылка меню -->
+						<!-- С помощью добавления дополнительного класса мы выводим иконку гамбургера внутрь ссылки. Как вариант, можно было просто вставить строчный тэг с классом иконки внутрь ссылки -->
+						<a href="" class="nav__link icon-menu"></a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Tour</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Features</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Pricing</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Элемент шапки расположенный в правой части, структура аналогична предыдущему блоку -->
+			<div class="header__right">
+				<ul class="nav">
+					<li class="nav__item">
+						<a href="" class="nav__link nav__link_gray">Help</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Contacts</a>
+					</li>
+					<li class="nav__item">
+						<!-- Вместо ссылки с классом nav__link вставили ссылку с классом превращающим её в кнопку -->
+						<a href="" class="btn">
+							<!-- Внутри кнопки перед текстом вставили иконку согласно макету -->
+							<i class="icon-apple"></i> 
+							Get App
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Старт header__center Центральный элемент шапки -->
+			<div class="header__center">
+				<!-- В отдельно созданный блок разместили логотип -->
+				<img class="header__logo" src="img/logo.png" alt="">
+			</div>
+			<!-- Конец header__center -->
+
+			<div class="header__mobile">
+				<i class="icon-menu header__mobileToggle"></i>
+				<ul class="nav">
+					<li class="nav__item">
+						<a href="" class="nav__link">Tour</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Features</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Pricing</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link nav__link_gray">Help</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="nav__link">Contacts</a>
+					</li>
+					<li class="nav__item">
+						<a href="" class="btn">
+							<i class="icon-apple"></i> 
+							Get App
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+	</header>
+	<!-- /header -->
+
+	<!-- begin firstScreen -->
+	<div class="firstScreen">
+	
+		<div class="container_center">
+			<!-- При стилизации класса, мы оставляем возможность пользователям сайта использовать любой тэг без потери внешнего вида. Например в данном случае было бы правильно использовать тэг заголовка h1 который в принципе жаелатеолен на странице -->
+			<div class="firstScreen__title">What happens tomorrow?</div>
+
+			<div class="firstScreen__sub">The sight of the tumblers restored Bob Sawyer to a degree of equanimity which he had not possessed since his interview with his landlady. His face brightened up, and he began to feel quite convivial.</div>
+
+			<div class="firstScreen__action">
+				<!-- Пример использование модификатора класса. К классу btn добавлен через пробел класс btn_border для изменения внешнего вида согласно макету. Делается для экономии количества написанных стилей -->
+				<button class="btn btn_border">
+					<i class="icon-play"></i> 
+					Watch Video
+				</button>
+			</div>
+
+			<div class="firstScreen__img anim">
+				<img src="img/iphone-6.png" alt="">
+			</div>
+			
+		</div>
+		
+	</div>
+	<!-- end firstScreen -->
+
+	<!-- begin info -->
+	<!-- В данном случае блок container_center находится снаружи блока info просто потому, что нам нет необходимости рисовать какие то элементы за пределами контентной области сайта как например на первом экране растянутый на всю ширину фон, или как в некоторых блоках ниже -->
+	<div class="container_center">
+		<!-- Пример блока с повторяющимися по структуре дочерними элементами. Видно что они имеют одинаковые классы, и что в принципе их можно создать сколько угодно с разным контентом не смотря на разное расположение в макете. ТАкая техника часто используется при создании блоков с например карточками товаров. Единая структура, разный контент, разное размещение на странице(часто плиткой/колонками) -->
+		<div class="info">
+			
+			<!-- Блок слева -->
+			<div class="info__item">
+				<div class="info__img jell">
+					<img src="img/lock.png" alt="">
+				</div>
+				<div class="info__title">Real-time all the time</div>
+				<div class="info__txt">
+					<p>Thus much I thought proper to tell you in relation to yourself, and to the trust I reposed in you.</p>
+					<p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.</p>
+				</div>
+			</div>
+			
+			<!-- Блок справа -->
+			<div class="info__item jell">
+				<div class="info__img">
+					<img src="img/clock.png" alt="">
+				</div>
+				<div class="info__title">Adopt without any obstacles</div>
+				<div class="info__txt">
+					<p>This sounded a very good reason, and Alice was quite pleased to know it. 'I never thought of that before!' she said.</p>
+					<p>This I have produced as a scantling of Jack’s great eloquence and the force of his reasoning upon such abstruse matters.</p>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	<!-- end info -->
+
+	<!-- begin protect -->
+	<!-- Простой строковый блок с набором элементов -->
+	<div class="protect">
+	
+		<div class="container_center">
+			<div class="protect__content anim">
+				<!-- Заголовок исходя из названия класса не принадлежит к данному блоку, но для экономии места в стилях можно и нужно использовать универсальные классы для отображения одинаковых элементов на странице(цах) -->
+				<div class="section__title">Your day <br>is protected</div>
+				<div class="protect__text">
+					<p>There have not been any since we have lived here, said my mother. </p>
+					<p>We thought - Mr. Copperfield thought - it was quite a large rookery; but the nests were very old ones, and the birds have deserted them a long while.</p>
+				</div>
+				<button class="btn">Try to hack us 
+					<i class="icon-arrow-right"></i>
+				</button>
+				<button class="btn btn_border">Learn more</button>
+			</div>
+			
+		</div>
+		
+	</div>
+	<!-- end protect -->
+
+	<!-- begin protect -->
+	<!-- Пример блока с модификацией. Используются почти те же классы что и в предыдущем блоке protect но разница по макету всего лиш  в картинке и размещении блока с текстом. Опять же для эконмии места был сделан класс-модификатор protect_left благодаря которому мы перенесли блок с текстом в другую сторону и изменили изображение блока -->
+	<div class="protect protect_left">
+	
+		<div class="container_center">
+			
+			<div class="protect__content anim">
+				<div class="section__title">We are almost <br>everywhere</div>
+				<div class="protect__text">
+					<p>Now the races of these two have been for some ages utterly extinct, and besides to discourse any further of them would not be at all to my purpose. </p>
+					<p>Thus much I thought proper to tell you in relation to yourself, and to the trust I reposed in you.</p>
+				</div>
+				
+				<!-- Дополнительно дописанный элемент для блока protect которого нет в предыдущем -->
+				<div class="protect__parthners">
+					<div class="protect__parthnersName">Partners</div>
+					<!-- Каждую картинку завернули в ссылку, так как по смыслу при нажатии на логотип должен происходить переход на страницу сервиса к которму относится логотип -->
+					<a class="protect__parthnersLink" href="#">
+						<img src="img/dropbox-logo.png" alt="">
+					</a>
+					<a class="protect__parthnersLink" href="#">
+						<img src="img/evernote-logo.png" alt="">
+					</a>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	<!-- end protect -->
+	
+	<!-- Отдельно созданный блок для создания серой обертки для контента растянутой на всю ширину -->
+	<div class="line_gray">
+		
+		<div class="container_center">
+		
+			<div class="section__title section__title_divider txt_center">Beautiful Interface 
+			</div>
+			<div class="section__sub txt_center">Landing Screen</div>
+			
+		</div>
+		
+		<!-- Разметка для слайдера с телефоном и экранами для него -->
+		<!-- Сама обертка слайдера вынесенная из блока container_center так как слайдер растянут на всю ширину экрана, именно через класс обертки мы будем подключать скрипт слайдера -->
+		<div class="screenSlider">
+			<!-- Слайды размещаются внутри обертки слайдера и повторяются там необходимое количество раз. Как рекоммендация - делайте большее количество слайдерадов чем у вас нарисовано в макете, иначе можете не увидеть работы сладера и управляющих элементов(стрелки, точки для переключения) -->
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide1.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide2.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide3.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide4.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide5.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide1.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide2.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide3.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide4.jpg" alt="">
+			</div>
+			<!-- Слайд -->
+			<div class="screenSlider__item">
+				<!-- Изображение слайда -->
+				<img src="img/slide5.jpg" alt="">
+			</div>
+		</div>
+
+		<div class="container_center">
+		
+			<form action="" class="form">
+
+				<div class="section__sub txt_center">NewProvidence</div>
+				
+				<div class="section__title txt_center"><span class="txt_danger">Get</span> it to your smartphone</div>
+				
+				<div class="form__row">
+					<input type="text" placeholder="denis@getcraftwork.com">
+					<button type="submit" class="btn btn_success">
+						Send Invite 
+						<i class="icon-arrow-right"></i>
+					</button>
+				</div>
+
+			</form>
+
+			<div class="app">
+				<div class="app__title">or Download From</div>
+				<a href="#" title="" class="app__link">
+					<img src="img/app-button.png" alt="">
+				</a>
+			</div>
+			
+		</div>
+
+	</div>
+	
+	<!-- В данном случае для container_center задали дополнительный класс для уменьшения ширины контентной области. Можно было и не делать, а просто уменьшить размеры самих слайдеров. -->
+	<div class="container_center reviewWrap">
+		<!-- Следующие 2 слайдера с помощью настроек в function.js мы "связали" и они будут работать синхронно. То есть при переключении на второй слайд в первом салйдере, будет переключаться второй слайдер на второй слайд -->
+		<!-- Слайдер для изображений -->
+		<!-- Обертка слайдера с фотографиями -->
+		<div class="reviewImg">
+			<!-- Слайд 1 -->
+			<div class="reviewImg__item">
+				<img src="img/photo1.png" alt="">
+			</div>
+			<!-- Слайд 2 -->
+			<div class="reviewImg__item">
+				<img src="img/photo2.png" alt="">
+			</div>
+			<!-- Слайд 3 -->
+			<div class="reviewImg__item">
+				<img src="img/photo3.png" alt="">
+			</div>
+			<!-- Слайд 4 -->
+			<div class="reviewImg__item">
+				<img src="img/photo1.png" alt="">
+			</div>
+		</div>
+
+		<!-- Обертка слайдера с текстами отзывов. Порядок расположения сладов должен соответствовать слайдеру выше. То есть первы текст отзывово должен соответствовать первому слайду с фотогрфией, второй, второму и т.д. -->
+		<div class="reviewText">
+			<!-- Слайд 1 -->
+			<div class="reviewText__item">
+				<div class="reviewText__title">1 New Providence is the great UI kit </div>
+				<div class="reviewText__text">“Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.”</div>
+				<div class="reviewText__rate">
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+				</div>
+				<div class="reviewText__name">Cameron Dowman</div>
+			</div>
+			<!-- Слайд 2 -->
+			<div class="reviewText__item">
+				<div class="reviewText__title">Lorem ipsum dolor sit amet, consectetur adipisicing. </div>
+				<div class="reviewText__text">“Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.”</div>
+				<div class="reviewText__rate">
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+				</div>
+				<div class="reviewText__name">Cameron Dowman</div>
+			</div>
+			<!-- Слайд 3 -->
+			<div class="reviewText__item">
+				<div class="reviewText__title">3 New Providence is the great UI kit </div>
+				<div class="reviewText__text">“Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.”</div>
+				<div class="reviewText__rate">
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+				</div>
+				<div class="reviewText__name">Cameron Dowman</div>
+			</div>
+			<!-- Слайд 4 -->
+			<div class="reviewText__item">
+				<div class="reviewText__title">4 New Providence is the great UI kit </div>
+				<div class="reviewText__text">“Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door.”</div>
+				<div class="reviewText__rate">
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+					<i class="icon-star"></i>
+				</div>
+				<div class="reviewText__name">Cameron Dowman</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- <div class="container_center"> -->
+		<!--  -->
+		<!-- <form action="/" class="form"> -->
+			<!--  -->
+			<!-- <div class="fieldset"> -->
+				<!--  -->
+				<!-- <legend class="form__legend">title or explanatory caption</legend> -->
+				<!-- <div class="form__wrap"> -->
+					<!-- Для более удобной и универсальной стилизации задается класс в который складывается отдельная строка формы -->
+					<!-- Тэг input можно легко стилизовать с помощью стилей -->
+					<!-- <div class="form__row"> -->
+						<!-- <input type="text" id="text" name="" value="" placeholder=""> -->
+						<!-- С помощью атрибута for можно связывать label с другими поля форм. Для связки нужно для поля задать уникальный id и прописать его в атрибуте for у тэга label !!! Значение атрибута id на странице не может повторяться -->
+						<!-- <label class="form__label" for="text">Enter text</label> -->
+					<!-- </div> -->
+					<!-- Тэг input:checkbox кроссбраузерно не стилизуется, поэтому чаще используется конструкция позволяющая создать псевдоэлемент у привязанного к чекбоксу тэга label -->
+					<!-- <div class="form__row"> -->
+						<!-- !!! Порядок в html должен быть именно таким как в примере. С помощью css не возможно пока влиять на предыдущий элемент, только на следующий. -->
+						<!-- <input id="checkbox" type="checkbox" name="" checked=""> -->
+						<!-- <label for="checkbox">checkbox</label> -->
+					<!-- </div> -->
+					<!-- Тэг input:radio(радио-кнопки) стилизуется по аналогии с чекбоксом -->
+					<!-- <div class="form__row"> -->
+						<!-- Дя корректного переключения между radio необходимо указать одинаковое значение в атрибуте name -->
+						<!-- <input id="radio1" type="radio" name="radio" value="0" checked=""> -->
+						<!-- <label for="radio1"></label> -->
+						
+						<!-- <input id="radio2" type="radio" name="radio" value="1"> -->
+						<!-- <label for="radio2"></label> -->
+					<!-- </div> -->
+					<!-- Кнопка для загрузки файлов чаще всего стилизуется с помощью подмены кнопки другим элементом и размещением прозрачной кнопки над ним с помощью стилей. Либо с помощью добавления скриптов если нужно сделать вывод информации о загруженном файле -->
+					<!-- <div class="form__row">
+						<div class="form__file">						
+							<input type="file" name="" value="">
+							<span class="btn" >Загрузить файл</span>
+						</div>
+					</div> -->
+					<!-- Стандартный тэг select кроссбраузерно стилями не стилизуется. Особенно выпадающий список. Чаще всего для стилизации используются сторонние библиотеки, самая на мой взгляд удачаная Select2, так же можно использовать библиотечку JqueryFormStyler -->
+					<!-- <div class="form__row"> -->
+						<!-- <select name=""> -->
+							<!-- optgroup используется редко, только если нужно разбить элементы списка на группы -->
+							<!-- <optgroup>
+								<option value="">option 1</option>
+								<option value="">option 2</option>
+							</optgroup>
+							<optgroup>
+								<option value="">option 1</option>
+								<option value="">option 2</option>
+							</optgroup>
+						</select>
+					</div> -->
+					<!-- Поле для ввода многотрочного текста. Стилизуется так же как простой инпут. Есть нюанс с шириной и высотой. Описано в стилях. -->
+					<!-- <div class="form__row">
+						<textarea name="" placeholder="Text"></textarea>
+					</div> -->
+					<!-- Простая кнопка. Используется для отправки форм. Так же для отправки можно использовать input type="submit". Стилизуется чаще через универсальный класс -->
+					<!-- <div class="form__row">
+						<button class="btn" type="">button</button>
+					</div> -->
+				<!-- </div>
+			</div>
+		</form>
+		
+	</div> -->
+
+	<div class="line_gray price">
+		<div class="container_center">
+		
+			<div class="price__left">
+				<div class="section__title">Choose your perfect plan</div>
+				<div class="price__choose">
+					<div class="price__chooseTitle">You are</div>
+					<div class="price__chooseToggle">
+						<div class="price__chooseItem">
+							<input type="radio" name="choose" id="choose1" checked>
+							<label for="choose1">Individual</label>
+						</div>
+						<div class="price__chooseItem">
+							
+							<input type="radio" name="choose" id="choose2">
+							<label for="choose2">Company</label>
+						</div>
+					</div>
+				</div>
+				<div class="protect__text">
+					<p>Thus much I thought proper to tell you in relation to yourself, and to the trust I reposed in you.</p>
+					<p><small>Have a bigger team? <a href="">Let‘s talk</a></small></p>
+				</div>
+			</div>
+
+			<div class="price__right">
+				<div class="price__item price__item_lg">
+					<div class="price__title">Starter</div>
+					<div class="price__bage">Free</div>
+					<div class="price__description">Build your schedule every day</div>
+					<div class="price__list">
+						<div class="price__listItem">Unlimeted events</div>
+						<div class="price__listItem">Connect Dropbox & Evernote</div>
+					</div>
+					<div class="price__action">
+						<button class="btn">Get started</button>
+					</div>
+				</div>
+				<div class="price__item">
+					<div class="price__title">Pro</div>
+					<div class="price__bage">$4.99</div>
+					<div class="price__description">Make your life <br>better</div>
+					<div class="price__list">
+						<div class="price__listItem">Unlimeted events</div>
+						<div class="price__listItem">Connect Dropbox & Evernote</div>
+						<div class="price__listItem">Personal Assistant</div>
+					</div>
+					<div class="price__action">
+						<button class="btn btn_inverse">Make me a Pro</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="container_center form__wrapper">
+	
+		<form action="" class="form">
+			
+			<div class="section__title txt_center">Subscribe our newsletters</div>
+			
+			<div class="form__row">
+				<input type="text" placeholder="denis@getcraftwork.com">
+				<button type="submit" class="btn btn_success">
+					Send Invite 
+					<i class="icon-arrow-right"></i>
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<!-- Подключение скриптов необходимых для работы страницы -->
+	<!-- Так как мы планируем работать со скриптами и библиотеками(плагинами) написанными на jQuery, в первую очередь подключаем свежею библиотеку jQuery. Её можно подключать абсолютной ссылкой, но рекомендую всетаки скачивать и подключать как в примере ниже -->
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<!-- Подключение плагина slick для работы слайдеров -->
+	<script type="text/javascript" src="js/slick.min.js"></script>
+	<script type="text/javascript" src="js/jquery.viewportchecker.js"></script>
+	<!-- Вариант с удаленным подключением jQuery плагина -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<!-- В самую последнюю очередь подключаем файл со скриптами которые пишем мы сами и в которых запускаем и настраиваем плагины -->
+	<script type="text/javascript" src="js/function.js"></script>
+
+
+</body>
+</html>

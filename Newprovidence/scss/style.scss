@@ -1,0 +1,1132 @@
+// Делаем сброс отступов у всех элементов на странице, а так же приводим поведение размеров элементов к единому стандарту 
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+img {
+	max-width: 100%;
+}
+
+// Добавляем к стилевому файлу scss миксины 
+@import 'mixin';
+// Добавляем к стилевому файлу файл fonts.scss
+@import 'fonts';
+// Добавляем к стилевому файлу файл icon.scss с нашим набором иконок
+@import 'icon';
+// Добавляем к стилевому файлу файл slick.scss с основными стилями для слайдеров
+@import 'slick';
+
+body {
+	// Объявляем шрифт и его размер для всех элементов а страницы 
+	// !!!Некоторые элементы будут использовать браузерный шрифт по умолчанию, для таких нужно отдельно перезадавать! Например тэги input и button
+	font-family: Lato;
+	font-size: 18px;
+	line-height: 1.2;
+}
+
+// Создаем единый класс для выравнивания контента страницы
+.container_center {
+	// 1. По ширине
+	max-width: 1195px;
+	// 2. Задем отступы слева/справа для мобильных версий чтобы контент не прилипал к краем смартфонов
+	padding-left: 15px;
+	padding-right: 15px;
+	// 3. По центру
+	margin: 0 auto;
+}
+
+.header {
+	// Фоновый цвет можно использовать чтобы увидеть в браузере как себ ведет тот или иной элемент
+	// Комментарии в scss можно оставлять после компиляции в css их не будет
+	// background-color: #ddd;
+	// С помощью position: fixed; мы заставили шапку перемещаться вместе с прокруткой
+	// Такая техника используется для удобной навигации по странице, особенно когда на странице много экранов
+	position: fixed;
+	// position: fixed по умолчанию имеет ширину относительно вложенного контента, а шапка должна быть растянута на всю ширину экрана
+	width: 100%;
+	padding-top: 44px;
+	padding-bottom: 15px;
+	// Данный миксин добавляет кострукцию для запрета "схлапывания" родительского элемента внутри которого есть дочерние элемнеты со свойством float в значениях left или right
+	// Его работу можно посмотреть в файле mixin.scss
+	@extend %clear_a;
+	transition: all .5s;
+	z-index: 100;
+	&.stiky {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: #fff;
+		box-shadow: 0 0 20px rgba(#000, .3);
+	}
+	&__left {
+		// Прижимем элемент к левой части родительского контейнера
+		float: left;
+		padding-top: 8px;
+		.nav__item {
+			margin-right: 33px;
+			// Вариант с точным выравниванием отступов по макету используя псевдоклассы
+			// используется только для одинаковых элементов
+			// отступ для первого элемента 
+			// &:first-child {
+			// 	margin-right: 26px;
+			// }
+			// отступ для второго элемента 
+			// &:nth-child(2) {
+			// 	margin-right: 37px;
+			// }
+			// отступ для третьего элемента 
+			// &:nth-child(3) {
+			// 	margin-right: 35px;
+			// }
+		}
+	}
+
+	&__right {
+		// Прижимем элемент к правой части родительского контейнера
+		float: right;
+		.nav__item {
+			margin-left: 27px;
+		}
+	}
+
+	&__center {
+		text-align: center;
+	}
+	&__logo {
+		display: inline-block;
+		margin-top: 17px;
+		margin-right: -11px;
+	}
+	&__mobile {
+		display: none;
+		
+	}
+	@media (max-width: 1199px) {
+		&__logo {
+			// width: 70px;
+		}
+	}
+	@media (max-width: 991px) {
+		padding-top: 20px;
+		&__left,&__right {
+			display: none;
+		}
+		&__mobile {
+			display: block;
+			position: absolute;
+			top: 35px;
+			left: 20px;
+			transition: all .5s;
+		}
+		&__mobileToggle {
+			cursor: pointer;
+			position: relative;
+			z-index: 30;
+		}
+		&.stiky {
+			.header {
+				&__mobile {
+					top: 25px;
+				}
+			}
+		}
+	}
+	@media (max-width: 767px) {
+		
+	}
+}
+
+
+.nav {
+	// Сбрасываем стандартный вид элементов списка (так называемые буллеты)
+	list-style: none;
+	
+	&__item {
+		// Тэги li к которым применили данный класс по умолчанию блочные и выстраиваются в колонку, делаем их строчно-блочными для того чтобы выстроить их в линию.
+		display: inline-block;
+		
+	}
+	&__link {
+		// Убираем подчеркивание у ссылок
+		text-decoration: none;
+		color: #26272d;
+		font-family: Lato;
+		font-size: 16px;
+		// Создаем модификатор для сылки серого цвета
+		&_gray {
+			color: #1b1c1e;
+			opacity: 0.4;
+		}
+	}
+	.icon-menu {
+		font-size: 14px;
+	}
+	@media (max-width: 991px) {
+		// display: none;
+		position: fixed;
+		left: -250px;
+		transition: all .3s;
+		top: 0;
+		bottom: 0;
+		padding: 80px 20px 30px;
+		width: 250px;
+		z-index: 29;
+		background-color: #fff;
+		&.open {
+			left: 0;
+			box-shadow: 0 0 36px rgba(#000, 0.1);
+		}
+		&__item {
+			display: block;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+// Создаем единый класс для отображения всех кнопок на странице. 
+// С данным набором стилей класс btn можно применять к трем тэгам - <input type="button">, <button></button>, <a href=""></a> (Например: <button class="btn">Заказать</button>)
+.btn {
+	// Делаем элемент строчно-блочными (необходимо для ссылок)
+	display: inline-block;
+	// По умолчанию для кнопок используется браузерный шрифт, поэтому перезадаем его обязательно
+	font-family: Lato;
+	font-size: 16px;
+	font-weight: 400;
+	// Убираем стандартную обводку при фокусе на элементе
+	outline: none;
+	// Убираем подчеркивание если используется ссылка
+	text-decoration: none;
+	// Меняем курсор на руку с пальчиком для input и button
+	cursor: pointer;
+	// Остальные стили зависят от макета. 
+	// Реккомендую для класса btn без модификаторов задавать стили самой часто встречающейся кнопки, для отсальных используется модификатор
+	color: #ffffff;
+	padding: 10px 23px;
+	border-radius: 21px;
+	background-color: #267df4;
+	border: 1px solid #267df4;
+	transition: all .3s;
+	// Меняем стили иконки расположенной внутри класса btn
+	.icon-apple {
+		display: inline-block;
+		margin-right: 14px;
+		margin-left: -5px;
+		// vertical-align: middle;
+		
+	}
+	&:hover {
+		transform: scale(1.1);
+		
+	}
+	// Создаем модификатор для изменения внешнего вида класса btn
+	// Использование <button class="btn btn_border">Заказать</button>
+	&_border {
+		// Меняем стили границы для новой кнопки
+		border: 1px solid rgba(#26272d, .1);
+		// Меняем цвет фона на прозрачный
+		background-color: transparent;
+		// Меняем цвет текста
+		color: #26272d;
+		// Остальные стили возьмутся от класса btn
+	}
+	&_success {
+		background-color: #6fc754;
+		border: 1px solid #6fc754;
+	}
+	&_inverse {
+		background-color: transparent;
+		color: #267df4;
+	}
+	@media (max-width: 767px) {
+	    font-size: 14px;
+	}
+}
+
+// Первый экран страницы
+.firstScreen {
+	// Делаем отсуп сверху чтобы шапка не наползала на контент первого экрана
+	padding-top: 190px;
+	text-align: center;
+	// Задаем фоновое изображение сокращенным свойством background
+	// Параметры свойства: background: цвет url(путь к изображению) выравнивание_по_оси_Х выравнивание_по_оси_Y нужн_ли повторять_изображение;
+	// Все параметры не обязательные. То есть все можно не писать если в этом нет необходимости
+	// Выравнивание по осям можно менять местами, или вообще писать один параметр сразу для обеих осей
+	background: url(../img/fbg.jpg) bottom center no-repeat;
+	// Свойство background-size указывает как именно будет размещаться фоновое изображение внутри контейнера.
+	// В значении cover изображение будет полностью его заполнять без белых полей сверху/снизу. То что не входит, будет обрезаться.
+	// Может иметь 2 параметра по оси Х и Y
+	background-size: cover;
+	.container_center {
+		max-width: 810px;
+	}
+	// Стилизуем элементы используя Avocode
+	&__title {
+		color: #26272d;
+		font-family: "Varela Round";
+		font-size: 62px;
+		font-weight: 400;
+		margin-bottom: 34px;
+	}
+	&__sub {
+		color: #8c8f94;
+		font-size: 20px;
+		margin-bottom: 61px;
+		line-height: 1.3;
+	}
+	// Элемент оказался лишним, можно просто удалить и в стилях и в html
+	&__action {
+
+	}
+	.btn {
+		// Коррекируем стили универсального класса для соответствия макету внутри первого экрана
+		padding: 15px 48px;
+		margin-bottom: 46px;
+		// Меняем стили иконки расположенной внутри класса btn
+		.icon-play {
+			margin-right: 15px;
+			font-size: 10px;
+		}
+	}
+	&__img {
+		img {
+			// Строчный и строчно-блочный элемент по умолчанию имеет отступы со всех сторон относительно других элементов.
+			// С помощью свойства display: block убираем отступы у картинки. 
+			display: block;
+			// Вывешиваем картинку по центру
+			margin: auto;
+			// Чтобы сделать небольшое смещение изображения для соответсвия макету задаем position: relative и двигаем его свойствами left или right
+			position: relative;
+			right: -17px;
+		}
+	}
+	@media (max-width: 767px) {
+		padding-top: 124px;
+	    &__title {
+	    	font-size: 36px;
+	    }
+	    &__sub {
+	    	font-size: 16px;
+	    }
+	}
+}
+
+
+// Блок с повторяющимися внешне элементами.
+// Делаем универсальную заготовку для того чтобы можно было делать не только 2 элемента внутри но и большее количество без потери внешнего вида
+.info {
+	// Делаем отступы сверху/снизу от других блоков, можно использовать свойство padding
+	margin-top: 121px;
+	margin-bottom: 119px;
+	// Задаем поведение элемента по умолчания для того чтобы можно було сохранить ширину блока при отрицательном смещении относительно родителя
+	box-sizing: content-box;
+	// Задаем отрицательный отступ для создания отступа между дочерними элементми
+	margin-left: -94px;
+	// 2 свойства ниже задаем для сброса отсупов для дочерних элементов с inline-block
+	font-size: 0;
+	letter-spacing: -1px;
+	// Если используем обтекаемость у дочерних элементов не забываем добавлять after через миксин
+	// @extend %clear_a;
+	// Тут просто рисовали границу под блоком с помощью псевдоэлемента
+	&:after {
+		// content обязательное свойство для псевдоэлементов
+		content: '';
+		// Используя display: block растягиваем псевдоэлемент на всю ширину родителя
+		display: block;
+		// Создаем необходимую по макету границу
+		border-bottom: 1px solid rgba(#26272d, .05);
+		// Можно еще вот так сделать границу, разницы внешне ни какой не будет
+		// height: 1px;
+		// background-color: rgba(#26272d, .05);
+		// Добавляем отступы для выравнивания
+		margin-left: 94px;
+		margin-top: 93px;
+	}
+	&__item {
+		// Задаем отступ между элементами равный отрицательному у родительского
+		padding-left: 94px;
+		// Задаем ширину дочерних элементов
+		width: 50%;
+		// Первый вариант для построения двух блоков в одну строку используя обтекаемость
+		// float: left; // Сейчас не используется
+		// Второй вариант для построения двух блоков в одну строку используя inline-block
+		display: inline-block;
+		vertical-align: top;
+		// Восстанавливаем размер шрифта и межбуквенный интервал для элемента по умолчанию при использовании варианта с inline-block
+		font-size: initial;
+		letter-spacing: initial;
+	}
+	&__descr {
+		overflow: hidden;
+	}
+	// Стилизуем элементы используя Avocode
+	&__img {
+		min-height: 51px;
+		margin-bottom: 38px;
+		// float: left;
+		
+	}
+	&__title {
+		color: #26272d;
+		font-size: 26px;
+		font-weight: 300;
+		margin-bottom: 36px;
+	}
+	&__txt {
+		color: #8c8f94;
+		font-size: 18px;
+		line-height: 1.4;
+		p {
+			margin-bottom: 30px;
+		}
+	}
+	@media (max-width: 1199px) {
+	    
+	}
+	@media (max-width: 991px) {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		&:after {
+			margin-top: 0px;
+		}
+	    &__item {
+	    	width: 100%;
+	    	margin-bottom: 40px;
+	    }	    
+	}
+	@media (max-width: 767px) {
+	}
+}
+
+// Создаем уникальный класс который можно добавлять к элементам для выравнивания текста по центру. В нашем случае к заголовкам
+.txt_center {
+	text-align: center;
+}
+
+
+// Так как внешний вид части заголовков повторяется на странице, создаем 2 отдельных класса section__title и section__sub для заголовка и подзаголовка
+.section {
+	// Стили для заголовка
+	&__title {
+		color: #26272d;
+		font-family: "Varela Round";
+		font-size: 42px;
+		font-weight: 400;
+		line-height: 1.23;
+		margin-bottom: 47px;
+		// Создаем модификатор для отображения заголовка с черточкой под текстом чтобы не создавать лишних элементов в html
+		&_divider {
+			&:after {
+				content: '';
+				display: block;
+				width: 50px;
+				height: 2px;
+				border-radius: 1px;
+				background-color: #267df4;
+				margin: 47px auto;
+
+			}
+		}
+	}
+	// Стили для подзаголовка
+	&__sub {
+		color: #8c8f94;
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1.2px;
+	}
+	@media (max-width: 991px) {
+	    &__title {
+	    	font-size: 36px;
+	    	margin-bottom: 30px;
+	    }
+	}
+	@media (max-width: 767px) {
+	    &__title {
+	    	font-size: 30px;
+	    	margin-bottom: 10px;
+	    }
+	}
+}
+
+
+
+.protect {
+	background: url('../img/iphone.png') no-repeat left -108px center;
+	background-size: 60%;
+	@extend %clear_a;
+	&__content {
+		float: right;
+		width: 40%;
+		padding-top: 138px;
+		padding-bottom: 244px;
+	}
+	&__text {
+		color: #8c8f94;
+		font-size: 20px;
+		margin-bottom: 68px;
+		line-height: 1.4;
+		// font-weight: 400;
+		p {
+			margin-bottom: 28px;
+		}
+	}
+	.section__title {
+		margin-bottom: 65px;
+	}
+	.btn {
+		margin-right: 20px;
+		.icon-arrow-right {
+			font-size: 12px;
+			margin-left: 47px;
+		}
+	}
+	&_left {
+		background-image: url(../img/world-map.png);
+		background-position: right center;
+		.protect {
+			&__content {
+				float: left;
+				
+			}
+		}
+	}
+	&__parthners {
+		&Name {
+			color: #26272d;
+			font-size: 12px;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-bottom: 30px;
+		}
+		&Link {
+			display: inline-block;
+			margin-right: 30px;
+		}
+	}
+	@media (max-width: 991px) {
+		&__content {
+			padding-top: 58px;
+			padding-bottom: 96px;
+		}
+	    &__text {
+	    	font-size: 16px;
+	    }
+	}
+	@media (max-width: 767px) {
+		background-image: none;
+		
+		&__content {
+			width: 100%;
+		}
+	    &__text {
+	    	font-size: 16px;
+	    	p {
+	    		margin-bottom: 15px;
+	    	}
+	    }
+		.section__title {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+
+// Создаем отдельный класс для экранов с серым фоном. Их на странице несколько.
+.line_gray {
+	background-color: #f5f5f8;
+	padding-top: 140px;
+	padding-bottom: 131px;
+}
+
+// Стили для первого слайдера
+.screenSlider {
+	// Вывешиваем картику телефона под всеми экранами которые находятся в сладах
+	// Прижимаем изображение к верху и смещаем слева на определенное количество процентов (подгоняется с помощью Perfect Pixel)
+	background: url('../img/slider-phone.png') no-repeat top left 51%;
+	// Задаем размер фонового изображения в % чтобы оно менялось в размерах вместе со слайдером
+	background-size: 24%;
+	margin-top: 46px;
+	&__item {
+		// Задаем отсупы у каждого слайда чтобы картинка фоновая отображалась корректно
+		padding: 83px 21px 151px;
+		img {
+			// Запрещаем изображениям "выпадать" за пределы одного слайда
+			max-width: 100%;
+			// Задаем тень для каждого согласно макету
+			box-shadow: 15px 41px 66px rgba(92, 95, 101, 0.28), 3px 9px 16px rgba(61, 61, 62, 0.15);
+		}
+	}
+	// Класс по умолчанию для текущего слайда в slick слайдере
+	.slick-current {
+		img {
+			// Для текущего слайда редактируем стили для изображения
+			// Убирем тень
+			box-shadow: none;
+			// Добавляем обводку и скругляем углы
+			border-radius: 5px;
+			border: 1px solid rgba(#000, .2);
+		}
+	}
+	@media (max-width: 767px) {
+	    background-image: none;
+	    
+	}
+}
+
+// Слайдер с отзывами
+
+// Для слайдера задаем максимальную ширину согласно макету
+.reviewWrap {
+	max-width: 590px;
+}
+
+// Слайдер с отзывами 1. Фото.
+.reviewImg {
+	margin-top: 137px;
+	margin-bottom: 75px;
+	&__item {
+		// Выравниваем изображения внутри по центру
+		text-align: center;
+		// Задаем высоту самого большого изображения
+		height: 130px;
+		// Сдвигаем на всех слайдах маленькие изображения для того чтобы выровнять все картинки по горизонтальной оси
+		padding-top: 20px;
+		img {
+			// Задаем размер изображениям для всех слайдов
+			width: 90px;
+			height: 90px;
+			// Добавлем плавность при изменениях изображения
+			transition: all .3s;
+			display: inline-block;
+			opacity: 0;
+		}
+	}
+	.slick-active {
+		img {
+			opacity: .2;
+		}
+	}
+	.slick-current {
+		// Для текущего слайд убираем отступ сверху так как изображение внутри этого слайда будет больше по размеру
+		padding-top: 0;
+		img {
+			// Задаем размер изображениям для текущего слайда
+			width: 130px;
+			height: 130px;
+			opacity: 1;
+		}
+	}
+	// Задаем общие стили для обеих срелок для переключения слайдера
+	.slick-arrow {
+		// По умолчанию для slick слайдера кнопки переключения это тэги button
+		// Делаем сброс для стилей тэга button
+		border: none;
+		outline: 0;
+		background-color: transparent;
+		cursor: pointer;
+		// Скрываем текст задавая размер шрифту 0
+		font-size: 0;
+		// Задаем размеры кнопок
+		width: 22px;
+		height: 40px;
+		// Позиционируем кнопки внутри слайдера
+		position: absolute;
+		// Сдвигем стрелки на половину высоты слайдера от верхнего края
+		top: 50%;
+		// Делаем обратный отступ на половину высоты кнопки чтобы кнопки не зависимо от высоты слайда всегда находились по центру
+		margin-top: -20px;
+		// ЗАдаем номер слоя чтобы слайд не перекрывал кнопку с классом slick-prev
+		z-index: 10;
+		// border: 1px solid #000;
+	}
+	.slick-prev {
+		// Задаем фоновое изображение для кнопки назад
+		background-image: url(../img/prev.svg);
+		// Сдвигаем кнопку в сторону от левого слайда если это необходимо по дизайну
+		left: -50px;
+	}
+	.slick-next {
+		// Задаем фоновое изображение для кнопки вперед
+		background-image: url(../img/next.svg);
+		// Сдвигаем кнопку в сторону от правого слайда если это необходимо по дизайну
+		right: -50px;
+	}
+	@media (max-width: 767px) {
+	    .slick-prev {
+	    	left: 0;
+	    }
+	    .slick-next {
+	    	right: 0;
+	    }
+	}
+}
+
+// Слайдер с отзывами 1. Текст
+// Тут в основном стили из Avocode
+.reviewText {
+	margin-bottom: 128px;
+	padding-bottom: 54px;
+	&__item {
+		text-align: center;
+		
+	}
+	&__title {
+		font-size: 32px;
+		font-weight: 300;
+		margin-bottom: 48px;
+	}
+	&__text {
+		color: #8c8f94;
+		font-size: 20px;
+		margin-bottom: 30px;
+	}
+	&__rate {
+		color: #f2bc3b;
+		margin-bottom: 68px;
+	}
+	&__name {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+	// Стилизация кнопок количества слайдов расположенных под салйдером
+	.slick-dots {
+		// Так как это простой тэг ul делаем сброс стандартных для списка стилей
+		list-style: none;
+		text-align: center;
+		// С помощью позиционирования прижимаем кнопки к нижней части слайдера
+		position: absolute;
+		// Не забываем растягивать блок на всю ширину, так как при свойствах absolute и fixed блок пересатет растягиваться на всю ширину по умолчанию.
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		button {
+			// По умолчанию для отображения кнопок используется тэг button
+			// Так сами кнопки нам в данном случае не нужны мы можем их просто скрыть и стилизовать их родителя - тэги li
+			display: none;
+		}
+		// Стилизуем наши кнопки для переключения слайдера
+		li {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 1px solid #000;
+			background-color: #000;
+			display: inline-block;
+			
+		}
+		// Спец класс с помощью которого мы можем выделить активную кнопку переключателя
+		.slick-active {
+			background-color: #fff;
+		}
+	}
+}
+
+
+// Стили для элементов формы
+.form {
+	// margin-bottom: 450px;
+	max-width: 515px;
+	margin: auto;
+	&__wrapper {
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+	.fieldset {
+		max-width: 300px;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #000;
+	}
+	legend {
+		text-align: center;
+	}
+	&__label {
+		display: block;
+		position: absolute;
+		top: 5px;
+		padding-left: 15px;
+		transition: all .3s;
+	}
+	// Задаем стили для основных типов текстовых полей.
+	input:not([type]),
+	input[type=text],
+	input[type=password],
+	input[type=email],
+	input[type=url],
+	input[type=search],
+	input[type=tel],
+	input[type=number],
+	input[type=datetime], 
+	textarea, {
+		border: 1px solid rgba(#222328, .2);
+		border-radius: 25px;
+		padding: 14px 175px 15px 25px;
+		color: #3a3d4b;
+		font-family: Lato;
+		font-size: 16px;
+		transition: all .3s;
+		outline: 0;
+		// Стилизуем подсказку из атрибута placeholder с помощью миксина
+		@include placeholder{
+			color: #000;
+			// Положение текста относительно левого края
+			text-indent: 0;
+			transition: all .3s;
+		}
+		&:hover {
+			// background-color: darken(#ddd, 10%);
+		}
+		&:focus,&.valid {
+			// background-color: #fff;
+			color: #000;
+			@include placeholder{
+				color: #000;
+				// Сдвигаем текст подсказки влево на 999 пикселей для плавного скрытия
+				text-indent: -999px;
+			}
+			// Если необходимо использовать label вместо подсказки можно использовать такие стили для смещения тэга label после фокуса на поле ввода, а так же после добавления класса valid(делается скриптом)
+			+ .form__label {
+				top: -20px;
+				font-size: 12px;
+			}
+		}
+	}
+	// Дополнительный стили для многострочного текстового поля
+	textarea {
+		// Задаем высоту, чтобы поле было невозможно закрыть совсем
+		min-height: 150px;
+	}
+	// Создаем заготоку для обертки группы полей или одного поля ели необходимо растянуть на всю ширину
+	&__row {
+		position: relative;
+		&:nth-child(n+2) {
+			margin-top: 15px;
+		}
+		// Растягиваем поля на всю ширину внутри класса form__row
+		input:not([type]),
+		input[type=text],
+		input[type=password],
+		input[type=email],
+		input[type=url],
+		input[type=search],
+		input[type=tel],
+		input[type=number],
+		input[type=datetime], 
+		textarea, {
+			width: 100%;
+		}
+		// Дополнительный стили для многострочного текстового поля
+		textarea {
+			// Задаем ширину чтобы поле нельзя было растянуть больше больше чем ширина контейнера в котором он размещен
+			min-width: 100%;
+			max-width: 100%;
+		}
+	}
+	// Стилизуем input checkbox используя в качестве селектора атрибут type
+	[type="checkbox"] {
+		// Так как инпут checkbox и radio кроссбраузерно не стилизуются даже для современных браузеров, используем конструкцию input + label связанные через атрибуты id и for
+		// Нативный checkbox скрываем
+		display: none;
+		+ label {
+			position: relative;
+			// Внутри label рисуем чекбокс как в дизайне
+			&:before {
+				content: '';
+				width: 10px;
+				height: 10px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				display: inline-block;
+				margin-right: 5px;
+				cursor: pointer;
+				line-height: 10px;
+				font-size: 12px;
+				font-weight: 600;
+				text-align: center;
+				
+			}
+		}
+		// При активном чекбоксе перерисовыаем псевдоэлемент у label
+		&:checked {
+			+ label {
+				&:before {
+					// Можно использовать иконки, картинки шрифты для показа галочки внутри псевдоэлемента
+					content: '✔';
+					color: #fff;
+					background-color: #ddd;
+				}
+			}
+		}
+	}
+	// Стилизуется так же как и чекбокс
+	[type="radio"] {
+		display: none;
+		+ label {
+			position: relative;
+			&:before {
+				content: '';
+				width: 10px;
+				height: 10px;
+				border: 1px solid #ddd;
+				border-radius: 50%;
+				display: inline-block;
+				margin-right: 5px;
+				cursor: pointer;
+				line-height: 10px;
+				font-size: 12px;
+				font-weight: 600;
+				text-align: center;
+				
+			}
+		}
+		&:checked {
+			+ label {
+				&:before {
+					content: '•';
+					color: #fff;
+					background-color: #ddd;
+				}
+			}
+		}
+	}
+	// Не стилизуется стилями. Либо под прозрачный инпут кладется псевдокнопка, либо делается с помощью скрипта
+	&__file {
+		// Задаем обертке position: relative чтобы спозиционировать внутри input:file
+		position: relative;
+		// Задаем стили псевдокнопке
+		.btn {
+			width: 100%;
+			text-align: center;
+			
+		}
+		// Позиционируем инпут над кнопкой и делаем его прозрачным, для того чтобы пользователь нажимал на него, а не на кнопку
+		input {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			cursor: pointer;
+			&:hover {
+				// При наведении меняем цвет фона у кнопки расположенной в html после инпута
+				+ .btn {
+					background-color: darken(#267df4, 15%);
+				}
+			}
+			&:active {
+				// При нажатии меняем цвет фона у кнопки расположенной в html после инпута
+				+ .btn {
+					background-color: lighten(#267df4, 15%);
+				}
+			}
+		}
+	}
+	
+	// Тэг select не стилизуется кроссбраузерно, особенно выпадающий список, есть техники для современных десктопных браузеров, но чаще используются js библиотечки 
+	select {
+		width: 100%;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		padding: 8px 15px;
+		background-color: #ddd;
+		color: #000;
+		transition: all .3s;
+	}
+	
+	// Стилизуем форму для лэндинга
+	.section__sub {
+		margin-bottom: 37px;
+	}
+
+	.section__title {
+
+	}
+
+	.btn {
+		position: absolute;
+		right: 5px;
+		top: 4px;
+		.icon-arrow-right {
+			font-size: 11px;
+			margin-left: 10px;
+		}
+	}
+
+}
+
+// Делаем спец класс для выделения текста цветом. Внутри текста можно использовать просто строчный тэг с данным классом
+.txt_danger {
+	color: #f00;
+}
+
+
+// Стилизуем блок с ссылкой на приложение
+.app {
+	text-align: center;
+	margin-top: 66px;
+	&__link {
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+	&__title {
+		color: rgba(#3a3d4b, .3);
+		font-family: Lato;
+		font-size: 12px;
+		font-weight: 400;
+		text-transform: uppercase;
+		margin-bottom: 22px;
+	}
+}
+
+.price {
+	@extend %clear_a;
+	.section__title {}
+	&__left {
+		float: left;
+		width: 34%;
+	}
+	&__choose {
+		margin-bottom: 77px;
+		&Title {
+			font-size: 12px;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-bottom: 20px;
+		}
+		&Toggle {
+			max-width: 258px;
+			border-radius: 25px;
+			border: 1px solid rgba(#26292c, .15);
+			@extend %clear_a;
+			padding: 4px;
+		}
+		&Item {
+			float: left;
+			width: 50%;
+			input {
+				display: none;
+				&:checked {
+					+ label {
+						box-shadow: 10px 28px 50px rgba(92, 95, 101, 0.28), 2px 5px 20px rgba(61, 61, 62, 0.15);
+						border-radius: 21px;
+						background-color: #ffffff;
+						color: #26292c;
+						cursor: default;
+						
+					}
+				}
+			}
+			label {
+				color: rgba(#26292c, .4);
+				padding: 12px;
+				display: block;
+				text-align: center;
+				cursor: pointer;
+				
+			}
+		}
+	}
+	&__right {
+		float: right;
+		width: 50%;
+		@extend %clear_a;
+	}
+	&__item {
+		border-radius: 10px;
+		padding: 20px;
+		text-align: center;
+		position: relative;
+		
+		background-color: #ebebed;
+		float: left;
+		width: 50%;
+		// Для смены внешнего вида почти одинаковых елементов задаем класс-модификатор и меняем внешний вид элемента
+		&_lg {
+			z-index: 1;
+			margin: -20px;
+			padding-top: 40px;
+			background-color: #fff;
+			box-shadow: 10px 28px 50px rgba(92, 95, 101, 0.2);
+		}
+	}
+	&__title {
+		font-size: 32px;
+		font-weight: 300;
+		margin-bottom: 29px;
+	}
+	&__bage {
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+		margin-bottom: 56px;
+		border: 1px solid rgba(#26292c, 0.2);
+		display: inline-block;
+		padding: 5px 15px;
+		border-radius: 13px;
+	}
+	&__description {
+		color: #8c8f94;
+		font-size: 20px;
+		margin-bottom: 50px;
+	}
+	&__list {
+		margin-bottom: 26px;
+		min-height: 135px;
+		&Item {
+			text-align: center;
+			margin-bottom: 25px;
+			&:before {
+				content: url(../img/check.svg); 
+				display: inline-block;
+				margin-right: 8px;
+			}
+		}
+	}
+	&__action {
+
+		.btn {
+			width: 90%;
+		}
+	}
+	@media (max-width: 991px) {
+		&__left {
+			float: none;
+			
+		}
+		&__right {
+			float: none;
+			width: 100%;
+			padding-left: 31px;		}
+	    &__item {
+			
+	    }
+	}
+	@media (max-width: 991px) {
+		&__left {
+			width: 100%;
+			
+		}
+		&__right {
+			padding-left: 0;
+		}
+	    &__item {
+			width: 100%;
+			&_lg {
+				margin: 0;
+			}
+	    }
+	}
+}
+
+
+.hidden{
+     opacity:0;
+}
+.visible{
+     opacity:1;
+}
