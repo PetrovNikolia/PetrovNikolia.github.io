@@ -1,0 +1,415 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.header:after, .firstscreen:after, .skill:after, .end:after {
+  content: '';
+  display: table;
+  clear: both; }
+
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent; }
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0; }
+  .slick-list:focus {
+    outline: none; }
+  .slick-list.dragging {
+    cursor: pointer;
+    cursor: hand; }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+  .slick-track:before, .slick-track:after {
+    content: "";
+    display: table; }
+  .slick-track:after {
+    clear: both; }
+  .slick-loading .slick-track {
+    visibility: hidden; }
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  outline: 0;
+  display: none; }
+  [dir="rtl"] .slick-slide {
+    float: right; }
+  .slick-slide img {
+    display: block; }
+  .slick-slide.slick-loading img {
+    display: none; }
+  .slick-slide.dragging img {
+    pointer-events: none; }
+  .slick-initialized .slick-slide {
+    display: block; }
+  .slick-loading .slick-slide {
+    visibility: hidden; }
+  .slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent; }
+
+.slick-arrow.slick-hidden {
+  display: none; }
+
+.container_center {
+  max-width: 1400px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto; }
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: #e9e9e9;
+  z-index: 20; }
+  .header__left {
+    margin-left: 30px;
+    padding-top: 25px;
+    float: left; }
+  .header__right {
+    float: right;
+    padding-top: 25px; }
+    .header__right .nav {
+      list-style: none; }
+      .header__right .nav__item {
+        display: inline-block;
+        padding-right: 30px; }
+      .header__right .nav__link {
+        text-decoration: none;
+        color: #191919;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px; }
+      .header__right .nav__link:hover {
+        color: #10c9c3;
+        letter-spacing: 1.2px; }
+
+.firstscreen {
+  background-color: #e9e9e9;
+  padding-top: 200px;
+  padding-bottom: 200px; }
+  .firstscreen .firstscreen__right {
+    float: right;
+    margin-right: 40px; }
+    .firstscreen .firstscreen__right .title {
+      color: #1d1d1d;
+      font-family: Montserrat;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 48px;
+      letter-spacing: 0.38px;
+      padding-bottom: 32px; }
+    .firstscreen .firstscreen__right .text {
+      color: #787878;
+      font-family: "Nunito Sans";
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28px;
+      /* Text style for "We are a n" */
+      letter-spacing: 0.09px;
+      padding-bottom: 40px; }
+    .firstscreen .firstscreen__right .btn {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      /* Text style for "contact us" */
+      letter-spacing: 1.2px;
+      background-color: #10c9c3;
+      padding: 25px 46px;
+      cursor: pointer;
+      border: #10c9c3;
+      margin-left: 5px; }
+
+.AboutUs {
+  text-align: center; }
+  .AboutUs .title {
+    color: #191919;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 60px;
+    letter-spacing: 0.3px;
+    padding-bottom: 20px;
+    padding-top: 90px; }
+  .AboutUs .text {
+    color: #787878;
+    font-family: "Nunito Sans";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+    width: 40%;
+    margin: auto;
+    padding-bottom: 40px; }
+  .AboutUs .signature {
+    padding-bottom: 100px; }
+
+.skill {
+  padding-bottom: 100px; }
+  .skill .slill__right {
+    padding-left: 100px;
+    float: left;
+    width: 50%;
+    padding-right: 100px; }
+    .skill .slill__right .title {
+      color: #171717;
+      font-family: Montserrat;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 84px;
+      letter-spacing: 0.3px;
+      padding-bottom: 20px; }
+    .skill .slill__right .block .item {
+      list-style: none;
+      padding-bottom: 20px; }
+      .skill .slill__right .block .item .subtitle {
+        color: #000000;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 30px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        padding-bottom: 10px; }
+      .skill .slill__right .block .item .cherta {
+        border: 1px solid #d8d8d8; }
+      .skill .slill__right .block .item .top__cherta {
+        border: 1px solid #10c9c3;
+        width: 75%;
+        margin-top: -2px; }
+      .skill .slill__right .block .item .mid__cherta {
+        border: 1px solid #10c9c3;
+        width: 90%;
+        margin-top: -2px; }
+      .skill .slill__right .block .item .bottom__cherta {
+        border: 1px solid #10c9c3;
+        width: 65%;
+        margin-top: -2px; }
+
+.achievements {
+  background-color: #10c9c3;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center; }
+  .achievements .item {
+    display: inline-block;
+    padding-right: 70px; }
+    .achievements .item .value {
+      display: inline-block;
+      padding-left: 30px; }
+    .achievements .item .title {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.54px; }
+    .achievements .item .text {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px; }
+
+.cells {
+  font-size: 0; }
+  .cells .item {
+    border: 1px solid red;
+    display: inline-block;
+    width: 25%;
+    height: 300px;
+    background-color: #444;
+    position: relative;
+    overflow: hidden; }
+    .cells .item .descr {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      color: #fff;
+      padding-top: 130px;
+      text-align: center;
+      opacity: 0;
+      -webkit-transition: 1s;
+      -o-transition: 1s;
+      transition: 1s;
+      -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+      transform: scale(0);
+      cursor: pointer; }
+  .cells .item:hover .descr {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1); }
+
+.info {
+  padding-top: 100px;
+  margin-left: 55px; }
+  .info .block .item {
+    width: 23%;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 45px; }
+    .info .block .item .img {
+      padding-bottom: 30px; }
+    .info .block .item .title {
+      padding-bottom: 20px;
+      color: #191919;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px; }
+    .info .block .item .text {
+      color: #787878;
+      font-family: "Nunito Sans";
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.08px; }
+
+.screenslider .slider {
+  background-color: #10c9c3;
+  padding-top: 170px;
+  padding-bottom: 170px; }
+  .screenslider .slider .slider__item {
+    padding-left: 10px;
+    text-align: center; }
+    .screenslider .slider .slider__item .text {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 36px;
+      /* Text style for "“, ”" */
+      font-size: 30px;
+      letter-spacing: 0.3px;
+      /* Text style for "Outstandin" */
+      letter-spacing: 0.24px;
+      padding-bottom: 12px; }
+    .screenslider .slider .slider__item .name {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 36px;
+      text-transform: uppercase;
+      /* Text style for "M, ichael" */
+      letter-spacing: 1.2px; }
+
+.partners {
+  padding-top: 100px;
+  padding-bottom: 100px; }
+  .partners .block {
+    text-align: center;
+    padding-left: 40px; }
+    .partners .block .item {
+      padding-right: 150px;
+      display: inline-block;
+      list-style: none; }
+
+.end {
+  background-color: #141414;
+  padding-top: 100px;
+  padding-bottom: 50px; }
+  .end .end__left {
+    float: left; }
+    .end .end__left .name {
+      color: #ffffff;
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 500;
+      /* Text style for "Piroll Des" */
+      letter-spacing: 0.18px;
+      padding-bottom: 30px; }
+    .end .end__left .text {
+      color: #bcbcbc;
+      font-family: "Nunito Sans";
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      /* Text style for "© 2017 Pir" */
+      letter-spacing: 0.07px; }
+  .end .end__right {
+    float: right; }
+    .end .end__right .item {
+      display: inline-block; }
+    .end .end__right .link {
+      list-style: none;
+      color: #bcbcbc;
+      font-family: "Nunito Sans";
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      /* Text style for "Facebook ," */
+      letter-spacing: 0.07px; }
+    .end .end__right .block2 {
+      padding-left: 55px; }
+    .end .end__right .block3 {
+      padding-left: 135px; }
+  .end .end__center {
+    text-align: center; }
+    .end .end__center a {
+      display: block;
+      color: #bcbcbc;
+      text-decoration: none;
+      font-family: "Nunito Sans";
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      /* Text style for "hello@piro" */
+      font-family: "Nunito Sans";
+      font-weight: 400;
+      letter-spacing: 0.07px;
+      /* Text style for "" */
+      font-family: "Work Sans";
+      font-weight: 400;
+      letter-spacing: 0.07px; }
