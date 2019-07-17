@@ -1,2 +1,2 @@
-# PetrovNikolia.github.io
+# Петров Николай
 Мои работы
